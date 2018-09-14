@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.platform.disable.package.validation.config">
+
+  <require>org.nuxeo.ecm.platform.admin.properties</require>
+  
+  <extension target="org.nuxeo.runtime.ConfigurationService"
+    point="configuration">
+    <property name="studio.snapshot.disablePkgValidation">true</property>
+  </extension>
+
+</component>

@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Nuxeo Disable Studio Snapshot Validation Module
+Bundle-SymbolicName: org.nuxeo.disable.studio.snapshot.validation
+Bundle-Localization: plugin
+Bundle-Vendor: Nuxeo
+Nuxeo-Component: OSGI-INF/disable-studio-snapshot-validation-contrib.xml,
+  OSGI-INF/override-hotreload-studio-snapshot-operation-contrib.xml
