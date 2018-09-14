@@ -14,7 +14,7 @@
  * Contributors:
  *     Nuxeo
  */
-package org.nuxeo.ftest.smart.search;
+package org.nuxeo.ftest.studio.disable;
 
 import org.junit.Test;
 import org.nuxeo.functionaltests.AbstractTest;
