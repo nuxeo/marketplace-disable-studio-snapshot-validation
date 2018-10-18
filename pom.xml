@@ -4,14 +4,14 @@
   <parent>
     <groupId>org.nuxeo.ecm.distribution</groupId>
     <artifactId>nuxeo-distribution</artifactId>
-    <version>10.2</version>
+    <version>9.10</version>
   </parent>
 
   <groupId>org.nuxeo.marketplace.studio</groupId>
   <artifactId>marketplace-disable-studio-snapshot-validation-parent</artifactId>
   <packaging>pom</packaging>
   <name>Parent</name>
-  <description>Package to allow disabling Studio snapshot validation for 10.2 and above.</description>
+  <description>Package to allow disabling Studio snapshot validation for 9.10.</description>
   <version>1.0.1-SNAPSHOT</version>
 
   <modules>
