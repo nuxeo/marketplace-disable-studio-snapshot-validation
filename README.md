@@ -4,9 +4,6 @@ This modules disable Studio snapshot validation, waiting for it to be optimized 
 
 If the Studio module is not aligned with the current server target platform, or is declaring dependencies that are not available on the server, user will not be warned anymore.
 
-This module also includes a patch of the HotReloadStudioSnapshot Nuxeo operation, as it was not taking into account the property to properly disable validation.
-
-
 # Licensing
 
 [GNU Lesser General Public License (LGPL) v2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
