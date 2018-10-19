@@ -21,6 +21,9 @@ package org.nuxeo.ecm.disable.studio.snapshot.validation;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -36,6 +39,7 @@ import org.nuxeo.connect.update.PackageDependency;
 import org.nuxeo.connect.update.PackageException;
 import org.nuxeo.connect.update.PackageState;
 import org.nuxeo.connect.update.PackageUpdateService;
+import org.nuxeo.connect.update.ValidationStatus;
 import org.nuxeo.connect.update.task.Task;
 import org.nuxeo.ecm.admin.operation.HotReloadStudioSnapshot;
 import org.nuxeo.ecm.admin.runtime.PlatformVersionHelper;
@@ -47,6 +51,7 @@ import org.nuxeo.ecm.automation.core.annotations.Operation;
 import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
 import org.nuxeo.ecm.automation.core.annotations.Param;
 import org.nuxeo.ecm.core.api.Blob;
+import org.nuxeo.ecm.core.api.Blobs;
 import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.NuxeoException;
 import org.nuxeo.ecm.core.api.NuxeoPrincipal;
@@ -60,7 +65,7 @@ import org.nuxeo.runtime.services.config.ConfigurationService;
  * @since 10.2
  */
 @Operation(id = HotReloadStudioSnapshot.ID, category = Constants.CAT_SERVICES, label = "Hot Reload Studio Snapshot Package", description = "Updates Studio project with latest snapshot.")
-public class HotReloadStudioSnapshotOverride extends HotReloadStudioSnapshot {
+public class HotReloadStudioSnapshotOverride {
 
     private static final Log log = LogFactory.getLog(HotReloadStudioSnapshotOverride.class);
 
@@ -228,6 +233,46 @@ public class HotReloadStudioSnapshotOverride extends HotReloadStudioSnapshot {
         } catch (PackageException | ConnectServerError e) {
             throw new NuxeoException("Error while installing studio snapshot", e);
         }
+    }
 
+    protected static void removePackage(PackageUpdateService pus, LocalPackage pkg) throws PackageException {
+        log.info(String.format("Removing package %s before update...", pkg.getId()));
+        if (pkg.getPackageState().isInstalled()) {
+            // First remove it to allow SNAPSHOT upgrade
+            log.info("Uninstalling " + pkg.getId());
+            Task uninstallTask = pkg.getUninstallTask();
+            try {
+                performTask(uninstallTask);
+            } catch (PackageException e) {
+                uninstallTask.rollback();
+                throw e;
+            }
+        }
+        pus.removePackage(pkg.getId());
+    }
+
+    protected static void performTask(Task task) throws PackageException {
+        ValidationStatus validationStatus = task.validate();
+        if (validationStatus.hasErrors()) {
+            throw new PackageException(
+                    "Failed to validate package " + task.getPackage().getId() + " -> " + validationStatus.getErrors());
+        }
+        if (validationStatus.hasWarnings()) {
+            log.warn("Got warnings on package validation " + task.getPackage().getId() + " -> "
+                    + validationStatus.getWarnings());
+        }
+        task.run(null);
+    }
+
+    protected static Blob jsonHelper(String status, String message, List<String> dependencies) {
+        JSONObject resultJSON = new JSONObject();
+        JSONArray result = new JSONArray();
+        resultJSON.put("status", status);
+        resultJSON.put("message", message);
+        if (dependencies != null) {
+            resultJSON.put("deps", dependencies);
+        }
+        result.add(resultJSON);
+        return Blobs.createJSONBlob(result.toString());
     }
 }
