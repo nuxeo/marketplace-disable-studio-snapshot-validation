@@ -2,7 +2,8 @@
 <package type="addon" name="marketplace-disable-studio-snapshot-validation" version="@VERSION@">
   <title>Disable Studio Snapshot Validation</title>
   <description>
-    <p>TODO</p>
+    <p>This package disables some server-side (Connect) validations before the download of the Studio package, which can reduce the update time drastically in some cases. As a drawback, it can lead to installing a 10.10 package on a 9.3 without warning (for instance).<br/>
+Please note that this package is available temporarily until the Nuxeo Online Services team optimizes the server side package validation.</p>
   </description>
   <vendor>Nuxeo</vendor>
   <installer restart="true" />
