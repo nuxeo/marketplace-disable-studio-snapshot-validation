@@ -2,8 +2,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.nuxeo.ecm.distribution</groupId>
-    <artifactId>nuxeo-distribution</artifactId>
+    <groupId>org.nuxeo</groupId>
+    <artifactId>nuxeo-ecm</artifactId>
     <version>11.1-SNAPSHOT</version>
   </parent>
 
@@ -29,7 +29,7 @@
       </dependency>
       <dependency>
         <groupId>org.nuxeo.marketplace.studio</groupId>
-	<artifactId>marketplace-disable-studio-snapshot-validation</artifactId>
+        <artifactId>marketplace-disable-studio-snapshot-validation</artifactId>
         <version>${project.version}</version>
         <type>zip</type>
       </dependency>
