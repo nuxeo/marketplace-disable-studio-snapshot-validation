@@ -11,11 +11,10 @@ Please note that this package is available temporarily until the Nuxeo Online Se
   <nuxeo-validation>nuxeo_certified</nuxeo-validation>
   <production-state>production_ready</production-state>
   <supported>false</supported>
-  <platforms>
-    <platform>server-@NUXEO_PLATFORM_VERSION@</platform>
-    <platform>server-@NUXEO_PLATFORM_VERSION@-*</platform>
-    <platform>server-@NUXEO_TARGET_VERSION@</platform>
-  </platforms>
+  <target-platform>
+    <name>@NUXEO_DISTRIBUTION_NAME@</name>
+    <version>@NUXEO_TARGET_VERSION@</version>
+  </target-platform>
   <license>LGPL 2.1</license>
   <license-url>http://www.gnu.org/licenses/lgpl-2.1.html</license-url>
   <visibility>PUBLIC</visibility>
