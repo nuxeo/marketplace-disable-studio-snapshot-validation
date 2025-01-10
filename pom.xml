@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.nuxeo</groupId>
     <artifactId>nuxeo-parent</artifactId>
-    <version>2021.1</version>
+    <version>2025.0.120</version>
   </parent>
 
   <groupId>org.nuxeo.marketplace.studio</groupId>
@@ -12,16 +12,15 @@
   <packaging>pom</packaging>
   <name>Parent</name>
   <description>Package to allow disabling Studio snapshot validation.</description>
-  <version>2021.0.1-SNAPSHOT</version>
+  <version>2025.0.0-SNAPSHOT</version>
 
   <modules>
     <module>nuxeo-disable-studio-snapshot-validation</module>
     <module>marketplace</module>
-    <module>ftest/webdriver</module>
   </modules>
 
   <properties>
-    <nuxeo.target.version>[2021, 2022)</nuxeo.target.version>
+    <nuxeo.target.version>[2025, 2026)</nuxeo.target.version>
   </properties>
 
   <dependencyManagement>

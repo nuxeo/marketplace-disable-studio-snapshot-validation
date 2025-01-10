@@ -15,7 +15,7 @@ Please note that this package is available temporarily until the Nuxeo Online Se
     <name>@NUXEO_DISTRIBUTION_NAME@</name>
     <version>@NUXEO_TARGET_VERSION@</version>
   </target-platform>
-  <license>LGPL 2.1</license>
-  <license-url>http://www.gnu.org/licenses/lgpl-2.1.html</license-url>
+  <license>Apache License, Version 2.0</license>
+  <license-url>http://www.apache.org/licenses/LICENSE-2.0</license-url>
   <visibility>PUBLIC</visibility>
 </package>
